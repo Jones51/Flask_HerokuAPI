@@ -17,6 +17,10 @@ api = Api(app)
 
 jwt = JWT(app, authenticate, identity) #/auth
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 #Adding the resource classes and items connections
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>')
