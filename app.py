@@ -21,6 +21,8 @@ jwt = JWT(app, authenticate, identity) #/auth
 def create_tables():
     db.create_all()
 
+db.init_app(app)
+
 #Adding the resource classes and items connections
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>')
@@ -29,5 +31,4 @@ api.add_resource(Stores, '/stores')
 api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
-    db.init_app(app)
     app.run(port=5000, debug=True)
